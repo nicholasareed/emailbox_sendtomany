@@ -6,5 +6,7 @@ var tmp_credentials = {
 
 	ui_app_key: "pkg.dev.sendtomany",
 
-	max_rows: 15
+	filepicker_key: "ANmCrulqRQcympGJ9kxmEz",
+
+	max_rows: 25
 };

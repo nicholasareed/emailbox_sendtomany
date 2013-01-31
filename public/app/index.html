@@ -10,7 +10,7 @@
 	<!--<meta name="apple-mobile-web-app-capable" content="yes" />-->
 
 	<title>
-		Send to Many
+		Bolla - Slightly-personalized emails
 	</title>
 
 	<!--<script src="https://trigger.io/catalyst/target/target-script-min.js#ACBDF007-3B18-4194-9B6B-7FF6F802821C"></script>-->
@@ -38,6 +38,10 @@
 	<!-- Extra.css needs to be below less compiler -->
 	<link href="css/extra.css" type="text/css" rel="stylesheet">
 	<link href="css/jqcloud.css" type="text/css" rel="stylesheet">
+
+	<!-- Filepicker -->
+	<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+	<!--<script src="https://api.filepicker.io/v1/filepicker_debug.js"></script>-->
 
 	<!-- Credentials -->
 	<script src="js/app/creds.js"></script>
@@ -109,46 +113,275 @@
 	<!-- Body Login -->
 	<script id="t_body_login" type="text/x-handlebars-template">
 
-		<div class="container">
+		<div id="more_hover">
+			<i class="icon-arrow-down"> </i> Scroll down to learn more! 
+		</div>
+
+		<div class="container" style2="background: #41A3E9;">
 
 			<div class="intro_window">
 
-				<h1>
-					CSV to Email
-				</h1>
+				<div class="row">
 
-				<br />
+					<div class="span6">
 
-				<p>
-					The simplest way to send slightly-personalized emails to a bunch of people. Use templates, and skip as much time-consuming repetition as you want! 
-				</p>
+						<h1 style="font-weight:200;margin-bottom:20px;">
+							Bolla
+						</h1>
 
-				<div style="width: 250px;text-align:left;margin:0pt auto;">
-					<ol>
-						<li>
-							Upload CSV
-						</li>
-						<li>
-							Write Email Template
-						</li>
-						<li>
-							Preview and Customize per Recipient
-						</li>
-						<li>
-							Send All Emails
-						</li>
-					</ol>
+						<h2 style="font-weight: 200;margin-bottom:20px;">
+							Send <span style="color:black;font-weight:normal;">slightly-personalized emails</span>
+							<br /> to up to 25 people in seconds! 
+						</h2>
+
+						<!--
+						<p style="color:#444;margin-bottom:20px;">
+							The simplest way to send slightly-personalized emails to 2-25 people. 
+							<br />
+							Write a template email and customize it for each recipient! 
+						</p>
+						-->
+
+						<p>
+							<button class="login btn btn-info btn-large">Sign Up using Emailbox</button>
+							<p style="color:#444;">
+								Free for all beta signups!
+							</p>
+						</p>
+
+					</div>
+
+					<div class="span7 text-center">
+
+						<div class="play_video">
+							<img src="/images/play.png" id="screenshot_video" />
+							<h3>
+								Watch a Video
+							</h3>
+						</div>
+
+						<iframe class="video nodisplay" width="560" height="315" src="http://www.youtube.com/embed/Pz0gtQNFBzU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+					</div>
+
 				</div>
 
-				<hr>
+			</div>
 
-				<p>
-					<button class="login btn btn-info btn-large">Get Started, Login with Emailbox</button>
-				</p>
+			<div class="reasons">
+				<div class="row-fluid">
 
-				<br />
+					<div class="span12 text-center">
+
+						<h2>
+							How People Are Using Bolla
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span4 reason">
+						
+						<div>
+							<h3>
+								<span>To:</span> Update Investors and Shareholders
+							</h3>
+
+							<p>
+								Often you want to get a lot of the same information out (metrics, goals, updates), but with a slightly-different twist for certain people. 
+							</p>
+
+						</div>
+
+					</div>
+					<div class="span4 reason">
+						
+						<div>
+							<h3>
+								<span>To:</span> Start Making Sales
+							</h3>
+
+							<p>
+								A personal touch in a sales email can be invaluable. Bolla is more lightweight than Mailchimp (only seconds to get sending!) and sends from YOUR email address, not a spooky-looking domain.
+							</p>
+
+						</div>
+							
+					</div>
+					<div class="span4 reason">
+						
+						<div>
+							<h3>
+								<span>To:</span> Send Thank You Notes
+							</h3>
+
+							<p>
+								Slightly-personalized Thank You notes after an event can keep volunteers and speakers coming back. 
+							</p>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="how_to_use">
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							4 Simple Steps to Personalized Sending
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span3 how_step">
+						
+						<h3>
+							1. Upload CSV of Recipients
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s1_upload_csv_recipients.png" />
+						</div>
+
+					</div>
+
+					<div class="span3 how_step">
+						
+						<h3>
+							2. Write Email Template
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s2_write.png" />
+						</div>
+
+					</div>
+
+					<div class="span3 how_step">
+						
+						<h3>
+							3. Preview each Recipient
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s3_preview_modify.png" />
+						</div>
+
+					</div>
+
+					<div class="span3 how_step">
+						
+						<h3>
+							4. Send All Emails!
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s4_send.png" />
+						</div>
+
+					</div>
+
+				</div>
 
 			</div>
+
+
+			<div class="quotes">
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							What Do Customers Think? 
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span4 quote">
+						
+						<div>
+
+							<p>
+								"Impressively straightforward."
+								<br />
+								<small>Brad S. at Ace Tennis</small>
+							</p>
+
+						</div>
+
+					</div>
+					<div class="span4 quote">
+						
+						<div>
+							<p>
+								"Skipped a ton of repetition for us when sending out personalized pitches to potential customers."
+								<br />
+								<small>Victor O. at Fileboard</small>
+							</p>
+
+						</div>
+							
+					</div>
+					<div class="span4 quote">
+						
+						<div>
+
+							<p>
+								"So easy! I kept remembering little details to add to each person, and I could update each before sending!"
+								<br />
+								<small>Gayle R. in Seattle</small>
+							</p>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="main_footer">
+
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							What Else Would You Like to Know?
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+						
+						<div>
+							<p>
+								Let us know what you need: <a href="mailto:nick+bolla@getemailbox.com">nick+bolla@getemailbox.com</a>
+							</p>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
 
 		</div>
 
@@ -161,7 +394,7 @@
 		<div id="header" class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="index.html">Send to Many</a>
+					<a class="brand" href="index.html">Bolla</a>
 					
 					<a href="#logout" class="btn btn-default pull-right">
 						Logout
@@ -203,7 +436,7 @@
 					<div class="">
 
 						<h3 class="dedent">
-							1. Upload CSV
+							1. Upload CSV of Recipients
 						</h3>
 
 						<p style="color:#555">
@@ -237,7 +470,10 @@
 
 						<div class="step">
 							
+							<!--
 							<input type="file" name="files[]" id="files">
+							-->
+							<a id="pick_csv" class="btn btn-info" href="#">Pick CSV File</a>
 
 						</div>
 
@@ -263,7 +499,7 @@
 						</h3>
 
 						<p style="color:#555">
-							Make sure the list is what you expect, or add/remove recipients. 
+							Make sure the list looks how you expected, or add/remove recipients. 
 						</p>
 
 						<p>
@@ -480,7 +716,7 @@
 						<div class="step preview_step">
 							
 							<p>
-								Click each recipient to preview and modify the email to them. 
+								Click each recipient to preview and personalize the email to them. 
 							</p>
 
 							<table class="table preview">
@@ -766,9 +1002,21 @@
 		</div>
 	</script>
 
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36645089-1']);
+	  _gaq.push(['_setDomainName', 'getemailbox.com']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 
 </head>
-<body>
-
-</body>
+<body></body>
 </html>

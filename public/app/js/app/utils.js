@@ -1045,6 +1045,7 @@ var Api = {
 				// Log that we received a new Event
 				console.log('Event Received:' + new_event.event);
 				// console.log(new_event);
+				console.log(new_event);
 
 				// Go through each plugin and fire the callback (with firebase data) if it matches
 				var fired = 0;

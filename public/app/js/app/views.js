@@ -73,7 +73,8 @@ App.Views.Csv = Backbone.View.extend({
 
 	events: {
 		'change #files' : 'upload_read',
-		'click #test_sending' : 'test'
+		'click #test_sending' : 'test',
+		'click #pick_csv' : 'pick_csv'
 	},
 
 	initialize: function() {
@@ -173,6 +174,110 @@ App.Views.Csv = Backbone.View.extend({
 
 
 		return false;
+	},
+
+
+	pick_csv: function(ev){
+		// Choose a CSV file from somewhere
+		// - parse the CSV
+
+		var that = this;
+
+		var elem = ev.currentTarget;
+
+		// Disabled?
+		if($(elem).attr('disabled') == 'disabled'){
+			return false;
+		}
+
+		// Change text to "Uploading CSV" or similar
+		$(elem).attr('disabled','disabled');
+		$(elem).text('Uploading and Parsing CSV');
+
+		filepicker.pick({
+			extensions: ['.csv'],
+			services: ['BOX',
+						'COMPUTER',
+						'DROPBOX',
+						'GMAIL',
+						'URL']
+		}, function(FPFile){
+			// console.log('successs');
+			// console.log(FPFile);
+
+			// Download the file
+			filepicker.read(FPFile, function(fileData){
+
+				try {
+					var parsed = App.Utils.CSVToArray(fileData);
+				} catch (err){
+
+					alert('Failed parsing CSV, please try again (e1)');
+
+					// Revert
+					that.revert_btn();
+
+					return;
+				}
+
+				// Get first column
+				if(parsed.length < 2){
+					alert('Your CSV file must contain at least 2 rows: 1 for the column names, 1 for an email address');
+
+					// Revert
+					that.revert_btn();
+					return;
+				}
+
+				// column names
+				// - should sanitize and whatnot, but that can wait
+				// console.log(JSON.stringify(parsed));
+
+				// Must have "emails" as a variable
+				var column_names = parsed[0];
+				if(column_names.indexOf('email') == -1){
+					alert('Must contain "email" as one of the column names');
+
+					// Revert
+					that.revert_btn();
+					return;
+				}
+
+
+				// Total rows cannot exceed App.Credentials.max_rows
+				if(parsed.length > App.Credentials.max_rows){
+					alert('Sorry, you are limited to 25 rows per CSV file. Contact nick@getemailbox.com to potentially increase this limit');
+
+					// Revert
+					that.revert_btn();
+					return false;
+				}
+
+
+				// Write to data
+				App.Data.parsed_csvdata = parsed;
+
+				Backbone.history.loadUrl('recipients');
+
+			});
+
+
+		}, function(FPError){
+			alert('Failed parsing CSV, please try again (e2)');
+
+			// Revert
+			that.revert_btn();
+		});
+
+		return false;
+	},
+
+	revert_btn: function(){
+
+		// Revert elem
+		$('#pick_csv').removeAttr('disabled');
+		$('#pick_csv').text('Pick CSV');
+
 	},
 
 	render: function() {
@@ -486,7 +591,7 @@ App.Views.Preview = Backbone.View.extend({
 
 		// confirmation box
 		var answer = prompt('Please type the word "send" (without quotes) into the text box to confirm sending');
-		if(answer != 'send' && answer != ''){
+		if(answer != 'send'){
 			console.log('Sending was canceled');
 			return false;
 		}
@@ -494,7 +599,7 @@ App.Views.Preview = Backbone.View.extend({
 		var elem = ev.currentTarget;
 
 		// Disable button
-		$(elem).text('Validating...');
+		$(elem).text('Validating and Sending...');
 		$(elem).attr('disabled','disabled');
 
 		// Remove error message if exists
@@ -570,9 +675,9 @@ App.Views.Preview = Backbone.View.extend({
 					response: {
 						"pkg.native.email" : function(response){
 							// Handle response (see if validated to send)
-							console.log('Response');
-							console.log(response);
-							console.log(response.body.code);
+							// console.log('Response');
+							// console.log(response);
+							// console.log(response.body.code);
 
 							// Update the view code
 							if(response.body.code == 200){
@@ -644,7 +749,7 @@ App.Views.Preview = Backbone.View.extend({
 
 					// Send return email
 					var eventData = {
-						event: 'Email.send.validate',
+						event: 'Email.send',
 						delay: 0,
 						obj: {
 							To: recipient.columns.email,
@@ -699,7 +804,14 @@ App.Views.Preview = Backbone.View.extend({
 			$.when($(that.el)).done(function(){
 				// Are we over the rate limit?
 				
-				Backbone.history.loadUrl('review');
+				if(1==1){
+					Backbone.history.loadUrl('review');
+				} else {
+					// testing
+					$(elem).text('Send All Emails');
+					$(elem).attr('disabled',false);
+					return false;
+				}
 
 			});
 		});
@@ -941,6 +1053,7 @@ App.Views.BodyLogin = Backbone.View.extend({
 
 	events: {
 		'click .login' : 'login', // composing new email,
+		'click .play_video' : 'play_video'
 
 	},
 
@@ -965,12 +1078,30 @@ App.Views.BodyLogin = Backbone.View.extend({
 
 	},
 
+	play_video: function(ev){
+		// Play video in Youtube player
+		// - autoplay?
+
+		var elem = ev.currentTarget;
+
+		$(elem).remove();
+
+		$('iframe.video').removeClass('nodisplay');
+
+	},
+
 	render: function() {
 
 		var template = App.Utils.template('t_body_login');
 
 		// Write HTML
 		$(this.el).html(template());
+
+		// Remove "more" link after scrolling down slightly
+		$(window).on('scroll',function(){
+			$(this).unbind('scroll');
+			$('#more_hover').remove();
+		})
 
 		return this;
 	}

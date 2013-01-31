@@ -24,7 +24,7 @@ var App = {
 		var currentUrl = window.location.href;
 
 		// Filepicker
-		// filepicker.setKey(App.Credentials.filepicker_key);
+		filepicker.setKey(App.Credentials.filepicker_key);
 
 		App.Data.Keys.ctrl = false;
 		$(window).keydown(function(evt) {
@@ -85,107 +85,106 @@ var App = {
 
 		var dfd = $.Deferred();
 
-		Api.search({
-			data: {
-				model: 'UserGmailAccounts',
-				fields: [],
-				conditions: {},
-				limit: 1
-			},
-			success: function(res){
-				var res = JSON.parse(res);
-				if(res.code != 200){
-					dfd.reject();
-					// localStorage.setItem('ui_user_token',null);
-					// App.Credentials.ui_user_token = null;
-					// // App.router.navigate("body_login", true);
-					// Backbone.history.loadUrl('body_login')
-					// return;
+
+		// Login against our server
+		var loginData = {
+			user_token: App.Credentials.ui_user_token
+		};
+
+		$.ajax({
+			url: '/api/login',
+			type: 'POST',
+			cache: false,
+			data: JSON.stringify(loginData),
+			// dataType: 'html',
+			headers: {"Content-Type" : "application/json"},
+			success: function(jData){
+				// Result via Sponsored server
+				// - sets cookie
+				if(jData.code != 200){
+					//Failed logging in
+					localStorage.setItem('ui_user_token',null);
+					App.Credentials.ui_user_token = null;
+					Backbone.history.loadUrl('body_login')
+					return;
 				}
 
-				// At least 1 email account?
-				if(res.data.length < 1){
-					console.log('Error: Multiple UserGmailAccounts');
-				}
+				App.Credentials.app_user = jData.data.user;
+				// console.log('App.Credentials.app_user');
+				// console.log(App.Credentials.app_user);
 
-				// Save email accounts
-				App.Data.UserEmailAccounts = res.data[0].UserGmailAccounts;
+				// dfd.resolve();
 
-				// Login against our server
-				var loginData = {
-					user_token: App.Credentials.ui_user_token
-				};
+				// Backbone.history.loadUrl('body');
+				
 
-				$.ajax({
-					url: '/api/login',
-					type: 'POST',
-					cache: false,
-					data: JSON.stringify(loginData),
-					// dataType: 'html',
-					headers: {"Content-Type" : "application/json"},
-					success: function(jData){
-						// Result via Sponsored server
-						// - sets cookie
-						if(jData.code != 200){
+				Api.search({
+					data: {
+						model: 'UserGmailAccounts',
+						fields: [],
+						conditions: {},
+						limit: 1
+					},
+					success: function(res){
+						var res = JSON.parse(res);
+						if(res.code != 200){
+							dfd.reject();
+							// localStorage.setItem('ui_user_token',null);
+							// App.Credentials.ui_user_token = null;
+							// // App.router.navigate("body_login", true);
+							// Backbone.history.loadUrl('body_login')
+							// return;
+						}
+
+						if(res.code != 200){
 							//Failed logging in
 							dfd.reject();
 							return;
 						}
 
-						App.Credentials.app_user = jData.data.user;
-						// console.log('App.Credentials.app_user');
-						// console.log(App.Credentials.app_user);
+						// At least 1 email account?
+						if(res.data.length < 1){
+							console.log('Error: Not any UserGmailAccounts');
+						}
 
-						dfd.resolve();
+						// Save email accounts
+						App.Data.UserEmailAccounts = res.data[0].UserGmailAccounts;
 
-						// Backbone.history.loadUrl('body');
+						// Start listening
+						Api.Event.start_listening();
+
+						// Load body
+						Backbone.history.loadUrl('body');
 						
+
+
+						// Api.count({
+						// 	data: {
+						// 		model: 'Email',
+						// 		conditions: {
+
+						// 		}
+						// 	},
+						// 	success: function(res){
+						// 		var res = JSON.parse(res);
+						// 		if(res.code != 200){
+						// 			// error
+						// 			console.log(res);
+						// 			return;
+						// 		}
+
+						// 		// How many emails have we processed?
+						// 		if(res.data < 100){
+						// 			// Backbone.history.loadUrl('intro');
+						// 			var page = new App.Views.Modal.Intro();
+						// 			page.render();
+
+						// 		}
+						// 	}
+						// });
+
 					}
 				});
-
-		dfd.promise()
-			.then(function(){
-				Api.Event.start_listening();
-				Backbone.history.loadUrl('body');
-			})
-			.fail(function(){
-				localStorage.setItem('ui_user_token',null);
-				App.Credentials.ui_user_token = null;
-				// App.router.navigate("body_login", true);
-
-				Backbone.history.loadUrl('body_login')
-			});
-
-				// Check login with Filemess server
-				// - sets a cookie for our subsequent requests
-
-
-
-				// Api.count({
-				// 	data: {
-				// 		model: 'Email',
-				// 		conditions: {
-
-				// 		}
-				// 	},
-				// 	success: function(res){
-				// 		var res = JSON.parse(res);
-				// 		if(res.code != 200){
-				// 			// error
-				// 			console.log(res);
-				// 			return;
-				// 		}
-
-				// 		// How many emails have we processed?
-				// 		if(res.data < 100){
-				// 			// Backbone.history.loadUrl('intro');
-				// 			var page = new App.Views.Modal.Intro();
-				// 			page.render();
-
-				// 		}
-				// 	}
-				// });
-
 			}
 		});
 

@@ -46,13 +46,20 @@ body.console {
 /* Intro/login page */
 .intro_window {
   background: white;
-  text-align: center;
+  /*text-align: center;*/
   margin: 0pt auto;
-  margin-top:40px;
-  /*width: 600px;*/
+  margin-top:60px;
+  width: 1040px;
 
   padding: 20px;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
+
+  min-height: 355px;
+}
+
+.intro_window h1 {
+  font-size: 44px;
+  font-weight: 300;
 }
 
 #intro_steps {
@@ -105,6 +112,130 @@ body.console {
   color: transparent;
 }
 
+#more_hover {
+  position: fixed;
+  display: inline-block;
+  bottom: -1px;
+  right: 300px;
+  background: #eff;
+  color: black;
+
+  font-size: 16px;
+  line-height: 18px;
+
+  padding: 10px 5px;
+
+  border: 1px solid #ccc;
+
+  -webkit-border-radius: 4px 4px 0px 0px;
+  border-radius: 4px 4px 0px 0px;
+}
+
+#more_hover i {
+  margin-top: 4px;
+}
+
+.reasons,
+.how_to_use,
+.quotes {
+  padding-top:60px;
+  padding-bottom: 60px;
+  border-top: 1px solid #ccc;
+  background: #eff;
+}
+
+.reasons h2,
+.how_to_use h2,
+.quotes h2 {
+  margin-bottom: 10px;
+}
+
+.reason {
+  text-align: center;
+}
+
+.reason > div {
+  padding: 10px;
+}
+
+.reason h3 {
+  color: black;
+  font-weight: 400;
+}
+
+.reason span {
+  color: #9F9F9F;
+}
+
+
+.how_to_use {
+  background: white;
+}
+
+.how_to_use .how_step {
+  margin-top: 20px;
+}
+
+.how_step {
+  text-align: center;
+}
+
+.how_step img {
+  border: 1px solid #ccc;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.quotes {
+}
+
+.quote {
+  text-align: center;
+}
+
+.quote > div {
+  padding: 10px;
+}
+
+.quote h3 {
+  color: black;
+  font-weight: 400;
+}
+
+.quote span {
+  color: #9F9F9F;
+}
+
+.quotes p {
+  margin-top: 40px;
+  font-size:18px;
+  line-height: 22px;
+  font-family: Georgia, sans-serif;
+}
+
+.quote p small {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #666;
+}
+
+
+
+.main_footer {
+  background: #333;
+  color: white;
+  padding-top:40px;
+  padding-bottom: 40px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.main_footer a {
+  color: white;
+  text-decoration: underline;
+}
+
   /*color: transparent;
   background: transparent;
   font: 200 30px/187px 'Arvo', Helvetica, Arial, sans-serif;
@@ -116,8 +247,29 @@ body.console {
   left: 0;
   width: 280px;
   height: 187px;
- 
- 
+ */
+
+ .play_video {
+  width: 300px;
+  margin: 30px auto;
+  opacity: 0.7;
+  cursor: pointer;
+
+
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  transition: all .3s ease;
+ }
+
+ .play_video:hover {
+  opacity: 1.0;
+ }
+
+ .video {
+  margin: 10px auto 30px;
+ }
 
 /* Start of 2 Column CSS */
 .eq_col_outer {
@@ -1902,6 +2054,7 @@ div.file-list-view ul li:last-child {
   margin-left: 40px;
   border-left: 1px solid #ccc;
   padding: 10px 0px 10px 40px;
+  min-height: 300px;
 }
 
 p.hint {

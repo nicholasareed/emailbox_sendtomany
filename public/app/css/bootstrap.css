@@ -34,6 +34,8 @@ audio:not([controls]) {
   display: none;
 }
 html {
+  margin: 0px;
+  padding: 0px;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -145,7 +147,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #333333;
-  background-color: #FAFAFF;
+  /*background-color: #FAFAFF;*/
 }
 a {
   color: #0088cc;
@@ -183,7 +185,7 @@ a:hover {
 .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 1360px;
+  /*width: 1360px;*/
 }
 .span17 {
   width: 1360px;
@@ -315,7 +317,7 @@ a:hover {
 .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 1360px;
+  /*width: 1360px;*/
 }
 .span17 {
   width: 1360px;
@@ -746,6 +748,7 @@ h6 {
   margin: 0;
   font-family: inherit;
   font-weight: bold;
+  font-weight: 300;
   color: inherit;
   text-rendering: optimizelegibility;
 }
@@ -3708,30 +3711,34 @@ button.close {
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+
+  border-radius: 0px;
+  background: #2f96b4;
+  font-weight: 300;
 }
 .btn-info:hover,
 .btn-info:active,
 .btn-info.active,
 .btn-info.disabled,
 .btn-info[disabled] {
-  background-color: #2f96b4;
-  *background-color: #2a85a0;
+  background-color: #49afcd;
+  *background-color: #49afcd;
 }
 .btn-info:active,
 .btn-info.active {
-  background-color: #24748c \9;
+  background-color: #49afcd \9;
 }
 .btn-info:hover,
 .btn-info:active,
 .btn-info.active,
 .btn-info.disabled,
 .btn-info[disabled] {
-  background-color: #2f96b4;
-  *background-color: #2a85a0;
+  background-color: #49afcd;
+  *background-color: #49afcd;
 }
 .btn-info:active,
 .btn-info.active {
-  background-color: #24748c \9;
+  background-color: #49afcd \9;
 }
 .btn-inverse {
   background-color: #414141;
