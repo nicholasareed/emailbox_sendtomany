@@ -1,0 +1,1074 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+	<!--<meta name="apple-mobile-web-app-capable" content="yes" />-->
+
+	<title>
+		Bolla - Slightly-personalized emails
+	</title>
+
+	<!--<script src="https://trigger.io/catalyst/target/target-script-min.js#ACBDF007-3B18-4194-9B6B-7FF6F802821C"></script>-->
+	<script type="text/javascript">
+
+		var forge_enabled_if_available = true;
+
+		// Testing Forge usage
+		var useForge = false;
+		if(typeof forge !== 'undefined' && forge_enabled_if_available){
+			useForge = true;
+			forge.enableDebug();
+		}
+
+		var usePg = false;
+
+	</script>
+
+	<!--
+	<link rel="stylesheet/less" type="text/css" href="css/less/bootstrap.less">
+	-->
+
+	<script src="https://listen.getemailbox.com/socket.io/socket.io.js"></script>
+
+	<link href="css/bootstrap.css" type="text/css" rel="stylesheet"> <!-- Uncomment below if switching to Less-compiled -->
+
+	<!-- Extra.css needs to be below less compiler -->
+	<link href="css/extra.css" type="text/css" rel="stylesheet">
+	<link href="css/jqcloud.css" type="text/css" rel="stylesheet">
+
+	<!-- Filepicker -->
+	<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+	<!--<script src="https://api.filepicker.io/v1/filepicker_debug.js"></script>-->
+
+	<!-- Credentials -->
+	<script src="js/app/creds.js"></script>
+
+	<script src="js/libs/jquery-1.7.2.min.js"></script>
+	<script src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
+	<script src="js/libs/modernizr.2.6.2.dev.js"></script>
+	<script src="js/libs/json2.js"></script>
+	<script src="js/libs/dateFormat.js"></script>
+	<script src="js/libs/underscore-1.3.3.min.js"></script>
+	<script src="js/libs/handlebars-1.0.0.beta.6.js"></script>
+
+	<script src="js/libs/backbone-1.0.0.js"></script>
+	<script src="js/libs/backbone.localStorage-min.js"></script>
+	<script src="js/libs/burry.js"></script>
+	<script src="js/libs/backbone.cachingsync.js"></script>
+
+	<script src="js/libs/json-formatter.js"></script>
+	<script src="js/libs/date.js"></script>
+	<!-- http://momentjs.com/  would be an alternative -->
+
+	<script src="js/bootstrap/bootstrap-modal.js"></script>
+
+	<!--<script src="js/libs/jquery.ajaxQueue.js"></script>-->
+	<script src="js/libs/jquery.ajaxManager.js"></script>
+	<script src="js/libs/jquery.base64.js"></script>
+	<script src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
+	<script src="js/libs/jquery.wookmark.min.js"></script>
+	<script src="js/libs/jquery.hoverzoom.js"></script>
+	<!--<script src="js/libs/jquery.masonry-2.1.05.min.js"></script>-->
+	<script src="js/libs/jquery.imagesloaded.min.js"></script>
+
+	<!-- Flexigrid -->
+	<script src="js/libs/jquery.jeditable.js"></script>
+
+	<!-- FancyBox -->
+	<script src="js/libs/jquery.mousewheel-3.0.6.pack.js"></script>
+	<link rel="stylesheet" href="js/libs/fancybox//jquery.fancybox.css?v=2.1.3" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/libs/fancybox/jquery.fancybox.pack.js?v=2.1.3"></script>
+
+	
+	<!-- <script src="libs/jquery.toObject.js"></script> -->
+
+	<script src="js/libs/less-1.3.0.min.js"></script>
+
+	<!--<script src="https://static.firebase.com/v0/firebase.js"></script>-->
+
+	<script src="js/app/app.js"></script>
+	<script src="js/app/utils.js"></script>
+	<script src="js/app/plugins.js"></script>
+	<script src="js/app/models.js"></script>
+	<script src="js/app/collections.js"></script>
+	<script src="js/app/views.js"></script>
+	<script src="js/app/routes.js"></script>
+	<script src="js/app/helpers.js"></script>
+
+
+	<script>
+
+		$(document).ready(function(){
+			App.init();
+		});
+
+	</script>
+
+
+	<!-- Templates -->
+
+
+
+	<!-- Body Login -->
+	<script id="t_body_login" type="text/x-handlebars-template">
+
+		<div id="more_hover">
+			<i class="icon-arrow-down"> </i> Scroll down to learn more! 
+		</div>
+
+		<div class="container" style2="background: #41A3E9;">
+
+			<div class="intro_window">
+
+				<div class="row">
+
+					<div class="span6">
+
+						<h1 style="font-weight:200;margin-bottom:20px;">
+							Bolla
+						</h1>
+
+						<h2 style="font-weight: 200;margin-bottom:20px;">
+							Send <span style="color:black;font-weight:normal;">slightly-personalized emails</span>
+							<br /> to up to 25 people in seconds! 
+						</h2>
+
+						<!--
+						<p style="color:#444;margin-bottom:20px;">
+							The simplest way to send slightly-personalized emails to 2-25 people. 
+							<br />
+							Write a template email and customize it for each recipient! 
+						</p>
+						-->
+
+						<p>
+							<button class="login btn btn-info btn-large">Sign Up using Emailbox</button>
+							<p style="color:#444;">
+								Free for all beta signups!
+							</p>
+						</p>
+
+					</div>
+
+					<div class="span7 text-center">
+
+						<div class="play_video">
+							<img src="/images/play.png" id="screenshot_video" />
+							<h3>
+								Watch a Video
+							</h3>
+						</div>
+
+						<iframe class="video nodisplay" width="560" height="315" src="http://www.youtube.com/embed/Pz0gtQNFBzU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="reasons">
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							How People Are Using Bolla
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span4 reason">
+						
+						<div>
+							<h3>
+								<span>To:</span> Update Investors and Shareholders
+							</h3>
+
+							<p>
+								Often you want to get a lot of the same information out (metrics, goals, updates), but with a slightly-different twist for certain people. 
+							</p>
+
+						</div>
+
+					</div>
+					<div class="span4 reason">
+						
+						<div>
+							<h3>
+								<span>To:</span> Start Making Sales
+							</h3>
+
+							<p>
+								A personal touch in a sales email can be invaluable. Bolla is more lightweight than Mailchimp (only seconds to get sending!) and sends from YOUR email address, not a spooky-looking domain.
+							</p>
+
+						</div>
+							
+					</div>
+					<div class="span4 reason">
+						
+						<div>
+							<h3>
+								<span>To:</span> Send Thank You Notes
+							</h3>
+
+							<p>
+								Slightly-personalized Thank You notes after an event can keep volunteers and speakers coming back. 
+							</p>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="how_to_use">
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							4 Simple Steps to Personalized Sending
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span3 how_step">
+						
+						<h3>
+							1. Upload CSV of Recipients
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s1_upload_csv_recipients.png" />
+						</div>
+
+					</div>
+
+					<div class="span3 how_step">
+						
+						<h3>
+							2. Write Email Template
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s2_write.png" />
+						</div>
+
+					</div>
+
+					<div class="span3 how_step">
+						
+						<h3>
+							3. Preview each Recipient
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s3_preview_modify.png" />
+						</div>
+
+					</div>
+
+					<div class="span3 how_step">
+						
+						<h3>
+							4. Send All Emails!
+						</h3>
+
+						<div>
+							<img src="https://dl.dropbox.com/u/6673634/Screenshots/s4_send.png" />
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<div class="quotes">
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							What Do Customers Think? 
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span4 quote">
+						
+						<div>
+
+							<p>
+								"Impressively straightforward."
+								<br />
+								<small>Brad S. at Ace Tennis</small>
+							</p>
+
+						</div>
+
+					</div>
+					<div class="span4 quote">
+						
+						<div>
+							<p>
+								"Skipped a ton of repetition for us when sending out personalized pitches to potential customers."
+								<br />
+								<small>Victor O. at Fileboard</small>
+							</p>
+
+						</div>
+							
+					</div>
+					<div class="span4 quote">
+						
+						<div>
+
+							<p>
+								"So easy! I kept remembering little details to add to each person, and I could update each before sending!"
+								<br />
+								<small>Gayle R. in Seattle</small>
+							</p>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="main_footer">
+
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+
+						<h2>
+							What Else Would You Like to Know?
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div class="row-fluid">
+
+					<div class="span12 text-center">
+						
+						<div>
+							<p>
+								Let us know what you need: <a href="mailto:nick+bolla@getemailbox.com">nick+bolla@getemailbox.com</a>
+							</p>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</script>
+
+
+	<!-- Default Home View -->
+	<script id="t_body" type="text/x-handlebars-template">
+
+		<div id="header" class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="index.html">Bolla</a>
+					
+					<a href="#logout" class="btn btn-default pull-right">
+						Logout
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="body_container" class="body_container nudge_down">
+
+		</div>
+
+		<footer class="text-center">
+
+			Questions? nick@getemailbox.com
+
+		</footer>
+
+	</script>
+
+	<!--
+	{{#if app_user.stripe_active}}
+		<div>
+			Awesome
+		</div>
+	{{else}}
+		<a href="https://connect.stripe.com/oauth/authorize?scope=read_write&response_type=code&stripe_landing=register&client_id=???" class="stripe-connect">
+			<span>Connect with Stripe</span>
+		</a>
+	{{/if}}
+	-->
+
+
+	<script id="t_csv" type="text/x-handlebars-template">
+		<div class="dashboard">
+			<div class="row">
+				<div class="span3">
+
+					<div class="">
+
+						<h3 class="dedent">
+							1. Upload CSV of Recipients
+						</h3>
+
+						<p style="color:#555">
+							We parse the file and use the first row as the column names. 
+							<a href="https://s3-us-west-1.amazonaws.com/emailboxsendtomany/sendtomany_test.csv" target="_blank">Download a sample</a>. 
+						</p>
+
+						<p>
+							<img style="border: 1px solid #ccc;" src="https://s3-us-west-1.amazonaws.com/emailboxsendtomany/rkv2.png" />
+						</p>
+
+
+						<p>
+							or <a href="#" id="test_sending">do a test run</a>
+						</p>
+
+						<br />
+
+						<span class="label label-info">Notes</span>
+						<ul>
+							<li>
+								Must include an "email" column
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="span4">
+					
+					<div class="current_step">
+
+						<div class="step">
+							
+							<!--
+							<input type="file" name="files[]" id="files">
+							-->
+							<a id="pick_csv" class="btn btn-info" href="#">Pick CSV File</a>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</script>
+
+
+	<script id="t_recipients" type="text/x-handlebars-template">
+		<div class="dashboard">
+			<div class="row">
+				<div class="span3">
+
+					<div class="">
+
+						<h3 class="dedent">
+							2. Confirm Recipients
+						</h3>
+
+						<p style="color:#555">
+							Make sure the list looks how you expected, or add/remove recipients. 
+						</p>
+
+						<p>
+							<a href="#" class="looksgood btn">
+								Continue
+							</a>
+						</p>
+
+					</div>
+
+				</div>
+				<div class="span9">
+					
+					<div class="current_step">
+
+						<div class="step">
+
+							<!--
+							<h4>
+								Included Tags
+							</h4>
+
+							<div class="tags">
+								{{#each variables}}
+									
+									<span class="label">
+										{{this}}
+									</span>
+									&nbsp;
+									
+								{{/each}}
+							</div>
+							
+							<br />
+
+							<h4>
+								Recipients
+							</h4>
+							-->
+
+							<p>
+								Click a cell to edit. After editing, press ENTER to save. 
+							</p>
+
+							<p>
+								<a href="#" id="new-row" class="btn">
+									New Recipient
+								</a>
+							</p>
+
+							<table class="table csv editable">
+								<thead>
+									<tr>
+										{{#each variables}}
+											<th>
+												{{this}}
+											</th>
+										{{/each}}
+									</tr>
+								</thead>
+								<tbody>
+									{{#each rows}}
+										<tr>
+											{{#each this}}
+												<td class="editable">{{this}}</td>
+											{{/each}}
+											<td>
+												<a href="#" class="remove" title="Remove recipient">
+													&mdash;
+												</a>
+											</td>
+										</tr>
+									{{/each}}
+								</tbody>
+							</table>
+
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</script>
+
+	<script id="t_recipients_empty_row" type="text/x-handlebars-template">
+		<tr>
+			{{#each this}}
+				<td class="editable"></td>
+			{{/each}}
+			<td>
+				<a href="#" class="remove" title="Remove recipient">
+					&mdash;
+				</a>
+			</td>
+		</tr>
+	</script>
+
+
+	<script id="t_content" type="text/x-handlebars-template">
+		<div class="dashboard">
+			<div class="row">
+				<div class="span3">
+
+					<div class="">
+
+						<h3 class="dedent">
+							3. Write Email Template
+						</h3>
+
+						<p style="color:#555">
+							Set up your default Subject and Body. Next you will customize it for each recipient. 
+						</p>
+
+						<p>
+							<a href="#" class="looksgood btn">
+								Continue
+							</a>
+						</p>
+
+					</div>
+
+				</div>
+				<div class="span9">
+					
+					<div class="current_step">
+
+						<div class="step">
+							
+							<form>
+
+								<p>
+									Available tags: 
+									{{#each variables}}
+										<span class="label">
+											{{this}}
+										</span>
+										&nbsp;
+									{{/each}}
+								</p>
+
+								<blockquote>
+									Include a tag like: <code>{{html "{{email}}"}}</code>
+								</blockquote>
+
+								<div class="input">
+									<input id="subject" class="content-subject" type="text" style="width:100%;" placeholder="Subject of email" value=""/>
+								</div>
+
+								<textarea id="body" class="content-body" type="text" style="width:100%;height:400px;" placeholder="Body of email"></textarea>
+
+								<p>
+									<a href="#" id="populate_subject_and_body">Click to populate Subject and Body with example text</a>
+								</p>
+
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</script>
+
+
+
+
+	<script id="t_preview" type="text/x-handlebars-template">
+		<div class="dashboard">
+			<div class="row">
+				<div class="span3">
+
+					<div class="">
+
+						<h3 class="dedent">
+							4. Preview recipients
+						</h3>
+
+						<p style="color:#555">
+							Tags have already been injected into each email
+						</p>
+
+						<!--
+						<ul>
+							<li>
+								Tags have already been injected into each email
+							</li>
+							<li>
+								Emails will send at a rate of 2 per minute
+							</li>
+						</ul>
+						-->
+
+						<p>
+							<a href="#" class="send_all btn btn-success">
+								Send All Emails
+							</a>
+						</p>
+
+					</div>
+
+				</div>
+				<div class="span9">
+					
+					<div class="current_step">
+
+						<div class="step preview_step">
+							
+							<p>
+								Click each recipient to preview and personalize the email to them. 
+							</p>
+
+							<table class="table preview">
+								<thead>
+									<tr>
+										<th>
+											Email
+										</th>
+										<th>
+										</th>
+										<th>
+										</th>
+										<th>
+											Send
+										</th>
+										<th>
+										</th>
+										<th>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{{#each_with_index recipients}}
+										<tr class="preview_recipient" data-id="{{index}}">
+											<td>
+												<a class="preview" href="#">
+													{{columns.email}}
+												</a>
+											</td>
+											<td>
+												{{#if email.subject}}
+													<span class="modified">
+														modified
+													</span>
+												{{/if}}
+											</td>
+											<td>
+												{{#ifCond ../id index}}
+													<span class="last_viewed">
+														viewed last
+													</span>
+												{{/ifCond}}
+											</td>
+											<td>
+												ASAP
+											</td>
+											<td class="validating">
+												
+											</td>
+											<td>
+												<a href="#" class="remove" title="Remove recipient">
+													&mdash;
+												</a>
+											</td>
+
+										</tr>
+									{{/each_with_index}}
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</script>
+
+
+	<script id="t_preview_rate_limit_error" type="text/x-handlebars-template">
+		<div id="rate_limit_error" class="alert alert-danger">
+			<h3>Validation Failed</h3>
+			<p>
+				You are limited to sending <strong>{{rate_limit}}</strong> emails every 6 hour period. Your current usage is at <strong>{{current}}</strong> and you are trying to send <strong>{{sending}}</strong> emails.
+			</p>
+			<p>
+				Try removing some recipients before sending again. 
+			</p>
+		</div>
+	</script>
+
+
+	<script id="t_preview_sub" type="text/x-handlebars-template">
+		<div class="dashboard">
+			<div class="row">
+				<div class="span3">
+
+					<div class="sending_options_left2">
+
+						<h3 class="dedent30">
+							4.1 Preview recipient
+						</h3>
+
+
+						<p style="color:#555">
+							Tags have already been injected into the email. 
+						</p>
+
+						<p>
+							<a href="#" class="back btn">Save and Return to All Recipients</a>
+						</p>
+
+						<br />
+						<br />
+
+						<p>
+							<a href="#" class="revert">
+								Revert to original
+							</a>
+						</p>
+
+					</div>
+
+				</div>
+				<div class="span9">
+					
+					<div class="current_step">
+
+						<div class="step">
+							
+							<div class="sending_individual">
+								<table class="table">
+									<thead>
+										<tr>
+											{{#each variables}}
+												<th>
+													{{this}}
+												</th>
+											{{/each}}
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											{{#each recipient.columns}}
+												<td>
+													{{this}}
+												</td>
+											{{/each}}
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<form>
+
+								<div class="input">
+									<input id="subject" class="content-subject" type="text" style="width:100%;" placeholder="Subject of email goes here" value="{{recipient.email.subject}}" />
+								</div>
+
+								<textarea id="body" class="content-body" type="text" style="width:100%;height:400px;" placeholder="Body of email goes here">{{recipient.email.body}}</textarea>
+
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</script>
+
+
+
+	<script id="t_review" type="text/x-handlebars-template">
+		<div class="dashboard">
+			<div class="row">
+				<div class="span3">
+
+					<div class="">
+
+						<h3 class="dedent">
+							5. Review
+						</h3>
+
+						<p>
+							Your emails have been sent<!--(or scheduled for sending)-->. Emails send at a rate of 2 per minute. 
+						</p>
+
+						<p>
+							<a href="#" class="home btn">
+								Send More
+							</a>
+						</p>
+
+					</div>
+
+				</div>
+				<div class="span9">
+					
+					<div class="current_step">
+
+						<div class="step">
+							
+							<table class="table">
+								<thead>
+									<tr>
+										{{#each variables}}
+											<th>
+												{{this}}
+											</th>
+										{{/each}}
+									</tr>
+								</thead>
+								<tbody>
+									{{#each recipients}}
+										{{#ifCond live true}}
+											<tr>
+												{{#each columns}}
+													<td>{{this}}</td>
+												{{/each}}
+											</tr>
+										{{/ifCond}}
+									{{/each}}
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</script>
+
+
+
+	<!-- Intro template -->
+	<script id="t_modal_intro" type="text/x-handlebars-template">
+		<div class="modal hide" id="modalIntro">
+			<div class="modal-body">
+				<h3>Welcome to "Email+Sponsored"</h3>
+			</div>
+		</div>
+	</script>
+
+
+	<!-- Payments template -->
+	<script id="t_modal_sending" type="text/x-handlebars-template">
+		<div class="modal hide" id="modalSending">
+			<div class="modal-body">
+
+				<div class="sending_individual">
+					<table class="table">
+						<thead>
+							<tr>
+								{{#each variables}}
+									<th>
+										{{this}}
+									</th>
+								{{/each}}
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								{{#each row}}
+									<td>
+										{{this}}
+									</td>
+								{{/each}}
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<form>
+					<div class="input">
+						<input id="subject" type="text" style="width:100%;" placeholder="Subject of email goes here" value="" />
+					</div>
+
+					<textarea id="body" type="text" style="width:100%;height:400px;" placeholder="Body of email goes here" value=""  />
+				</form>
+
+			</div>
+		</div>
+	</script>
+
+
+	<!-- Toast template -->
+	<script id="t_toast" type="text/x-handlebars-template">
+		
+		<div class="toast-bg">
+			{{message}}
+		</div>
+
+	</script>
+
+	<!-- online-status template -->
+	<script id="t_online_status" type="text/x-handlebars-template">
+		<div class="online-status-bg">
+			Connection Interrupted
+		</div>
+	</script>
+
+	<!-- Debug Messages template -->
+	<script id="t_debug_messages" type="text/x-handlebars-template">
+		<div id="debug-messages">
+			{{#compare_size this ">" 0}}
+				<div class="debug-messages-bg">
+					{{#each this}}
+						<div class="debug-message">
+							{{text}} <span class="timeago" title="{{datetime}}"></span>
+						</div>
+					{{/each}}
+				</div>
+			{{/compare_size}}
+		</div>
+	</script>
+	<script id="t_debug_messages_production" type="text/x-handlebars-template">
+		{{#compare_size this ">" 0}}
+			<div id="debug-messages" class="production fade-in">
+				
+				<ul class="spinner">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				
+			</div>
+		{{/compare_size}}
+	</script>
+
+
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36645089-1']);
+	  _gaq.push(['_setDomainName', 'getemailbox.com']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+</head>
+<body></body>
+</html>
